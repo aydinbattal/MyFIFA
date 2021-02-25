@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Add Teams | FIFA World Cup 2018</title>
     <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
@@ -17,13 +17,13 @@
 <div>
     <form method="post"  th:action="@{/addTeam}" th:object="${team}">
 
-        <input type="hidden" th:field="*{id}">
-        <input type="text"  th:field="*{name}"><br>
-        <input type="text"  th:field="*{continent}"><br>
-        <input type="text"  th:field="*{gamesPlayed}"><br>
-        <input type="text"  th:field="*{wins}"><br>
-        <input type="text"  th:field="*{draws}"><br>
-        <input type="text"  th:field="*{losses}"><br>
+        <input type="hidden" th:field="*{TeamID}">
+        <input type="text"  th:field="*{TeamName}"><br>
+        <input type="text"  th:field="*{Continent}"><br>
+        <input type="text"  th:field="*{Played}"><br>
+        <input type="text"  th:field="*{Won}"><br>
+        <input type="text"  th:field="*{Drawn}"><br>
+        <input type="text"  th:field="*{Lost}"><br>
         <input type="submit" value="Add Team">
 
     </form>

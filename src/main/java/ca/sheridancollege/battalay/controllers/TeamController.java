@@ -26,18 +26,33 @@ public class TeamController {
         return "/Home";
     }
 
-    @RequestMapping("/addTeam") //make it PostMapping
-    public ModelAndView processTeam(HttpSession session, @ModelAttribute Team team){
+    @GetMapping("/deletePage")
+    public ModelAndView deletePage(){
+        mv = new ModelAndView("DeleteTeam", "teams",da.getTeams());
+        return mv;
+    }
 
-        if (team.getName() == null){
-            System.out.println("null");
-        }else {
-            da.insertTeam(team.getName(),team.getContinent(),team.getGamesPlayed(),
-                    team.getWins(),team.getDraws(),team.getLosses());
-//        session.setAttribute("team",team);
-        }
+    @GetMapping("/addPage")
+    public ModelAndView addPage(@ModelAttribute Team team){
+        mv = new ModelAndView("AddTeam", "team",team);
+        return mv;
+    }
+
+    @RequestMapping("/addTeam") //make it PostMapping
+    public ModelAndView processTeam(@ModelAttribute Team team){
+
+        da.insertTeam(team.getTeamName(),team.getContinent(),team.getPlayed(),
+                    team.getWon(),team.getDrawn(),team.getLost());
 
         return new ModelAndView("AddTeam", "team",team);
+    }
+
+    @GetMapping("/deleteTeamById/{id}")
+    public ModelAndView deleteTeam(@PathVariable int id){
+
+        da.deleteTeamById(id);
+        mv = new ModelAndView("redirect:/deletePage", "teams",da.getTeams());
+        return mv;
     }
 
 }

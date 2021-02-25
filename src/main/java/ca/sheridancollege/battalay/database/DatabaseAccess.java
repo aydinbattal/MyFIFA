@@ -38,4 +38,15 @@ public class DatabaseAccess {
             System.out.println("Team record was added successfully!");
 
     }
+
+    public void  deleteTeamById(int id){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "DELETE FROM Teams WHERE TeamID = :id";
+        namedParameters.addValue("id" , id);
+        int rowsAffected = jdbc.update(query,namedParameters);
+        if (rowsAffected > 0)
+            System.out.println("Student record was deleted successfully!");
+
+    }
 }

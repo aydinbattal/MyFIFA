@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete Teams | FIFA World Cup 2018</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
+
+<header class="header">
+    <img class="logo" th:src="@{images/2018_FIFA_World_Cup.png}" />
+    <table class="header-right">
+        <tr>
+            <td class="fragment" th:insert="supplement.html :: header"></td></tr></table>
+</header>
+
+<table width="50%">
+    <tr class="tableheader"><th>ID</th><th>NAME</th><th>EDIT</th><th>DELETE</th></tr>
+    <th:block th:each="t:${teams}">
+        <tr><td th:text="${t.TeamID}"></td>
+            <td th:text="${t.TeamName}"></td>
+            <td th:text="${t.Continent}"></td>
+            <td th:text="${t.Played}"></td>
+            <td th:text="${t.Won}"></td>
+            <td th:text="${t.Drawn}"></td>
+            <td th:text="${t.Lost}"></td>
+            <td><a th:href="@{'deleteTeamById/' + ${t.TeamID}}">DELETE</a></td>
+        </tr>
+
+    </th:block>
+
+</table>
+
+<footer class="footer" th:insert="supplement.html :: footer"></footer>
 
 </body>
 </html>
