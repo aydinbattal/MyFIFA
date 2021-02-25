@@ -1,0 +1,31 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+
+     
+    </head>
+    <body>
+    <div th:fragment="header">
+        <a class="active" th:href="@{/}">Home</a>
+        <a th:href="@{/addTeam}">Add Team</a>
+        <a th:href="@{/editTeam}">Edit Team</a>
+        <a th:href="@{/deleteTeam}">Delete Team</a>
+        <a th:href="@{/displayResults}">Display Results</a>
+    </div>
+
+	<footer th:fragment="footer">Copyright &copy; AYDIN BATTAL</footer>
+   
+<!--    <span class="SheridanLogo">-->
+<!--    <img th:src="@{/images/sheridan.png}">-->
+<!--    </span>-->
+<!--    -->
+<!--    <span class="Dice">-->
+<!--    <img th:src="@{/images/dice.png}">-->
+<!--    </span>-->
+
+        
+    </body>
+</html>

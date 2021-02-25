@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <img class="logo" th:src="@{images/2018_FIFA_World_Cup.png}" />
+    <table class="header-right">
+        <tr>
+            <td class="fragment" th:insert="supplement.html :: header"></td></tr></table>
+</header>
+
+<div>
+    <form method="post"  th:action="@{/addTeam}" th:object="${team}">
+
+        <input type="hidden" th:field="*{id}">
+        <input type="text"  th:field="*{name}"><br>
+        <input type="text"  th:field="*{continent}"><br>
+        <input type="text"  th:field="*{gamesPlayed}"><br>
+        <input type="text"  th:field="*{wins}"><br>
+        <input type="text"  th:field="*{draws}"><br>
+        <input type="text"  th:field="*{losses}"><br>
+        <input type="submit" value="Add Team">
+
+    </form>
+</div>
+
+<footer class="footer" th:insert="supplement.html :: footer"></footer>
+
+</body>
+</html>
