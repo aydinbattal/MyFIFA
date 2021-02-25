@@ -49,4 +49,31 @@ public class DatabaseAccess {
             System.out.println("Student record was deleted successfully!");
 
     }
+
+    public void  updateTeamById(Team team){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "UPDATE Teams SET TeamName,Continent,Played,Won,Drawn,Lost =:nam,:cont,:play,:win,:draw,:loss" +
+                " WHERE id = :id";
+        namedParameters.addValue("id" , team.getTeamID());
+        namedParameters.addValue("nam" , team.getTeamName());
+        namedParameters.addValue("cont" , team.getContinent());
+        namedParameters.addValue("play" , team.getPlayed());
+        namedParameters.addValue("win" , team.getWon());
+        namedParameters.addValue("draw" , team.getDrawn());
+        namedParameters.addValue("loss" , team.getLost());
+        int rowsAffected = jdbc.update(query,namedParameters);
+        if (rowsAffected > 0)
+            System.out.println("Team record was updated successfully!");
+
+    }
+
+    public List<Team> getTeamById(int id){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM Teams WHERE TeamID = :id";
+        namedParameters.addValue("id" , id);
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+
+    }
 }

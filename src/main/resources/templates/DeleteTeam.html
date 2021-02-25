@@ -15,7 +15,7 @@
 </header>
 
 <table width="50%">
-    <tr class="tableheader"><th>ID</th><th>NAME</th><th>EDIT</th><th>DELETE</th></tr>
+    <tr class="tableheader"><th>ID</th><th>NAME</th><th>DELETE</th></tr>
     <th:block th:each="t:${teams}">
         <tr><td th:text="${t.TeamID}"></td>
             <td th:text="${t.TeamName}"></td>

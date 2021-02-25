@@ -38,6 +38,18 @@ public class TeamController {
         return mv;
     }
 
+    @GetMapping("/editPage")
+    public ModelAndView editPage(){
+        mv = new ModelAndView("EditTeam", "teams",da.getTeams());
+        return mv;
+    }
+
+    @GetMapping("/displayPage")
+    public ModelAndView displayResultsPage(){
+        mv = new ModelAndView("DisplayResults", "teams",da.getTeams());
+        return mv;
+    }
+
     @RequestMapping("/addTeam") //make it PostMapping
     public ModelAndView processTeam(@ModelAttribute Team team){
 
@@ -53,6 +65,25 @@ public class TeamController {
         da.deleteTeamById(id);
         mv = new ModelAndView("redirect:/deletePage", "teams",da.getTeams());
         return mv;
+    }
+
+    @GetMapping("/updateTeamById/{id}")
+    public ModelAndView updateTeam(@PathVariable int id){
+
+        Team team;
+        team = da.getTeamById(id).get(0);
+        mv = new ModelAndView("EditTeamById", "teams",da.getTeams());
+        mv.addObject("team",team);
+        return mv;
+    }
+
+    @PostMapping("/applyChanges")
+    public ModelAndView applyChanges(@ModelAttribute Team team){
+
+        da.updateTeamById(team);
+        mv = new ModelAndView("redirect:/editPage", "teams",da.getTeams());
+        return mv;
+
     }
 
 }
