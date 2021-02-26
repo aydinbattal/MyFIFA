@@ -76,4 +76,13 @@ public class DatabaseAccess {
         return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
 
     }
+
+    public List<Team> searchByString(String keyword){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM Teams WHERE TeamName LIKE :keyword OR Continent LIKE :keyword";
+        namedParameters.addValue("keyword","%"+keyword+"%");
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+
+    }
 }

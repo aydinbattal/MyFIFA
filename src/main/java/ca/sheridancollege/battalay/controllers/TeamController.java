@@ -4,6 +4,7 @@ import ca.sheridancollege.battalay.database.DatabaseAccess;
 import ca.sheridancollege.battalay.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,22 +21,30 @@ public class TeamController {
         return "/Home";
     }
 
-    @GetMapping("/delete")
-    public ModelAndView deletePage(){
-        mv = new ModelAndView("DeleteTeam", "teams",da.getTeams());
-        return mv;
-    }
-
     @GetMapping("/add")
     public ModelAndView addPage(@ModelAttribute Team team){
         mv = new ModelAndView("AddTeam", "team",team);
         return mv;
     }
 
+    @GetMapping("/delete")
+    public String deletePage(Model model, String keyword){
+        if (keyword != null){
+            model.addAttribute("teams",da.searchByString(keyword));
+        }else{
+            model.addAttribute("teams",da.getTeams());
+        }
+        return "DeleteTeam";
+    }
+
     @GetMapping("/edit")
-    public ModelAndView editPage(){
-        mv = new ModelAndView("EditTeam", "teams",da.getTeams());
-        return mv;
+    public String editPage(Model model, String keyword){
+        if (keyword != null){
+            model.addAttribute("teams",da.searchByString(keyword));
+        }else{
+            model.addAttribute("teams",da.getTeams());
+        }
+        return "EditTeam";
     }
 
     @GetMapping("/results")
@@ -79,5 +88,16 @@ public class TeamController {
         return mv;
 
     }
+
+//    @GetMapping("/search")
+//    public String search(Model model, String keyword){
+//        if (keyword != null){
+//            model.addAttribute("teams",da.searchByString(keyword));
+//        }else{
+//            model.addAttribute("teams",da.getTeams());
+//        }
+//        return "DeleteTeam";
+//    }
+
 
 }

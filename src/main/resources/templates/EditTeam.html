@@ -15,7 +15,7 @@
 </header>
 
 <table width="50%">
-    <tr class="tableheader"><th>ID</th><th>NAME</th><th>EDIT</th></tr>
+    <tr class="tableheader"><th>ID</th><th>TEAM</th><th>CONTINENT</th><th>PLAYED</th><th>WON</th><th>DRAWN</th><th>LOST</th><th>OPTION</th></tr>
     <th:block th:each="t:${teams}">
         <tr><td th:text="${t.TeamID}"></td>
             <td th:text="${t.TeamName}"></td>
@@ -30,6 +30,13 @@
     </th:block>
 
 </table>
+
+<div>
+    <form th:action="@{/edit}" method="get">
+        <input type="text" name="keyword">
+        <input type="submit" value="Filter">
+    </form>
+</div>
 
 <footer class="footer" th:insert="supplement.html :: footer"></footer>
 
