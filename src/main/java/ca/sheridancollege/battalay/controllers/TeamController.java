@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class TeamController {
 
@@ -19,32 +17,28 @@ public class TeamController {
 
     @GetMapping("/")
     public String index(){
-
-//        mv = new ModelAndView("Home", "teams",da.getTeams());
-//        mv.addObject("team", new Team());
-
         return "/Home";
     }
 
-    @GetMapping("/deletePage")
+    @GetMapping("/delete")
     public ModelAndView deletePage(){
         mv = new ModelAndView("DeleteTeam", "teams",da.getTeams());
         return mv;
     }
 
-    @GetMapping("/addPage")
+    @GetMapping("/add")
     public ModelAndView addPage(@ModelAttribute Team team){
         mv = new ModelAndView("AddTeam", "team",team);
         return mv;
     }
 
-    @GetMapping("/editPage")
+    @GetMapping("/edit")
     public ModelAndView editPage(){
         mv = new ModelAndView("EditTeam", "teams",da.getTeams());
         return mv;
     }
 
-    @GetMapping("/displayPage")
+    @GetMapping("/results")
     public ModelAndView displayResultsPage(){
         mv = new ModelAndView("DisplayResults", "teams",da.getTeams());
         return mv;
@@ -63,12 +57,12 @@ public class TeamController {
     public ModelAndView deleteTeam(@PathVariable int id){
 
         da.deleteTeamById(id);
-        mv = new ModelAndView("redirect:/deletePage", "teams",da.getTeams());
+        mv = new ModelAndView("redirect:/delete", "teams",da.getTeams());
         return mv;
     }
 
-    @GetMapping("/updateTeamById/{id}")
-    public ModelAndView updateTeam(@PathVariable int id){
+    @GetMapping("/editTeamById/{id}")
+    public ModelAndView editTeam(@PathVariable int id){
 
         Team team;
         team = da.getTeamById(id).get(0);
@@ -80,8 +74,8 @@ public class TeamController {
     @PostMapping("/applyChanges")
     public ModelAndView applyChanges(@ModelAttribute Team team){
 
-        da.updateTeamById(team);
-        mv = new ModelAndView("redirect:/editPage", "teams",da.getTeams());
+        da.editTeamById(team);
+        mv = new ModelAndView("redirect:/edit", "teams",da.getTeams());
         return mv;
 
     }

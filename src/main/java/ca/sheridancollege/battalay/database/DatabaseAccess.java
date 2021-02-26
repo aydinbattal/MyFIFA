@@ -46,15 +46,15 @@ public class DatabaseAccess {
         namedParameters.addValue("id" , id);
         int rowsAffected = jdbc.update(query,namedParameters);
         if (rowsAffected > 0)
-            System.out.println("Student record was deleted successfully!");
+            System.out.println("Team record was deleted successfully!");
 
     }
 
-    public void  updateTeamById(Team team){
+    public void  editTeamById(Team team){
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-        String query = "UPDATE Teams SET TeamName,Continent,Played,Won,Drawn,Lost =:nam,:cont,:play,:win,:draw,:loss" +
-                " WHERE id = :id";
+        String query = "UPDATE Teams SET TeamName =:nam,Continent=:cont,Played =:play,Won =:win,Drawn =:draw,Lost =:loss" +
+                " WHERE TeamID = :id";
         namedParameters.addValue("id" , team.getTeamID());
         namedParameters.addValue("nam" , team.getTeamName());
         namedParameters.addValue("cont" , team.getContinent());
