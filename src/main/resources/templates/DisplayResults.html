@@ -31,6 +31,14 @@
 
 </table>
 
+<form th:action="@{/sort}" method="get">
+    <h3>Sort by:</h3>
+    <input checked type="radio" name="radioName" id="byNam" value="byNam">Name
+    <input type="radio" name="radioName" id="byCon" value="byCon">Continent
+    <input type="radio" name="radioName" id="byPts" value="byPts">Points<br>
+    <input type="submit" value="Submit">
+</form>
+
 <footer class="footer" th:insert="supplement.html :: footer"></footer>
 
 </body>

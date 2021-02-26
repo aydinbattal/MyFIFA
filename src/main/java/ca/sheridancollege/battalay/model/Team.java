@@ -17,6 +17,8 @@ public class Team implements Serializable {
     private int Won;
     private int Drawn;
     private int Lost;
+
     private int points;
+    private String orderChoice;
 
 }

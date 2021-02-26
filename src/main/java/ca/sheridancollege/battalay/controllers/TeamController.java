@@ -48,9 +48,10 @@ public class TeamController {
     }
 
     @GetMapping("/results")
-    public ModelAndView displayResultsPage(){
-        mv = new ModelAndView("DisplayResults", "teams",da.getTeams());
-        return mv;
+    public String displayResultsPage(Model model, @ModelAttribute Team team){
+        model.addAttribute("teams",da.getTeams());
+        model.addAttribute("team",team);
+        return "DisplayResults";
     }
 
     @RequestMapping("/addTeam") //make it PostMapping
@@ -89,15 +90,25 @@ public class TeamController {
 
     }
 
-//    @GetMapping("/search")
-//    public String search(Model model, String keyword){
-//        if (keyword != null){
-//            model.addAttribute("teams",da.searchByString(keyword));
-//        }else{
-//            model.addAttribute("teams",da.getTeams());
-//        }
-//        return "DeleteTeam";
-//    }
+    @GetMapping("/sort")
+    public String sort(Model model, @RequestParam("radioName") String orderChoice){
+
+        String[] order = {"byNam", "byCon", "byPts"};
+
+        if (orderChoice.equals(order[0])){
+            model.addAttribute("teams",da.orderTeamsByName());
+        }else if (orderChoice.equals(order[1]))
+        {
+            model.addAttribute("teams",da.orderTeamsByContinent());
+        }else if (orderChoice.equals(order[2]))
+        {
+            model.addAttribute("teams",da.orderTeamsByPoints());
+        }else {
+            model.addAttribute("teams",da.getTeams());
+        }
+
+        return "DisplayResults";
+    }
 
 
 }

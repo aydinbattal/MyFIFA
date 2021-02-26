@@ -85,4 +85,25 @@ public class DatabaseAccess {
         return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
 
     }
+
+    public List<Team> orderTeamsByName(){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM Teams ORDER BY TeamName ASC";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
+
+    public List<Team> orderTeamsByContinent(){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM Teams ORDER BY Continent ASC";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
+
+    public List<Team> orderTeamsByPoints(){
+
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM Teams ORDER BY (Won*3 + Drawn) DESC";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
 }
