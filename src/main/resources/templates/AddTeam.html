@@ -16,15 +16,29 @@
 
 <div>
     <form method="post"  th:action="@{/addTeam}" th:object="${team}">
+        <table>
+            <input type="hidden" th:field="*{TeamID}">
+            <tr><th>Team Name</th></tr>
+            <tr><td><input type="text" th:field="*{TeamName}"></td></tr>
+            <tr><th>Continent</th></tr>
+            <tr><td><select name="continent" th:field="*{Continent}" style="width:50px;">
+                <option name="option" th:value="Asia">Asia</option>
+                <option name="option" th:value="Africa">Africa</option>
+                <option name="option" th:value="America">America</option>
+                <option name="option" th:value="Europe">Europe</option>
+                <option name="option" th:value="Oceania">Oceania</option>
+            </select></td></tr>
+            <tr><th>Played</th></tr>
+            <tr><td><input type="text"  th:field="*{Played}"></td></tr>
+            <tr><th>Won</th></tr>
+            <tr><td><input type="text"  th:field="*{Won}"></td></tr>
+            <tr><th>Drawn</th></tr>
+            <tr><td><input type="text"  th:field="*{Drawn}"></td></tr>
+            <tr><th>Lost</th></tr>
+            <tr><td><input type="text"  th:field="*{Lost}"></td></tr>
+            <tr><td><input onclick="alert('The team has been successfully added')" type="submit" value="Add Team"></td></tr>
+        </table>
 
-        <input type="hidden" th:field="*{TeamID}">
-        <input type="text"  th:field="*{TeamName}"><br>
-        <input type="text"  th:field="*{Continent}"><br>
-        <input type="text"  th:field="*{Played}"><br>
-        <input type="text"  th:field="*{Won}"><br>
-        <input type="text"  th:field="*{Drawn}"><br>
-        <input type="text"  th:field="*{Lost}"><br>
-        <input type="submit" value="Add Team">
 
     </form>
 </div>

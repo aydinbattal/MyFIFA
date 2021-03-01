@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TeamController {
 
+    //todo: confirmation boxes, fix the css problem on editstudentbyid page, finish css for all, flags if theres time
+
     @Autowired
     DatabaseAccess da;
 
